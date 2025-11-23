@@ -1,0 +1,3 @@
+"id","username","password_hash","name","email","role","created_at","updated_at"
+"5","admin","$2b$10$poByq/4RI.FYWk4yLm7l9uuPOFOQJvqZHbJ5dUHK36P4mlAA1OHAG","Admin Librarian","admin@library.edu","admin","2025-11-09 15:08:29","2025-11-09 15:08:29"
+"6","librarian","$2b$10$G3XSdeW7TOFk.YFns2XDJebKn5sZdlnDloluKuQxrUoj05rUTOnRy","Regular Librarian","librarian@library.edu","librarian","2025-11-09 15:08:29","2025-11-09 15:08:29"

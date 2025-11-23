@@ -1,0 +1,102 @@
+,isbn,title,author,subject,publisher,publication_year,total_copies,available_copies,shelf_location,created_at,updated_at
+201,9.78E+12,To Kill a Mockingbird,Harper Lee,Fiction,Penguin Books,2015,3,3,F-101,09-11-2025 15:08,09-11-2025 15:08
+202,9.78E+12,The Great Gatsby,F. Scott Fitzgerald,Fiction,Scribner,2021,3,3,F-102,09-11-2025 15:08,09-11-2025 15:08
+203,9.78E+12,Pride and Prejudice,Jane Austen,Fiction,Penguin Classics,2012,2,2,F-103,09-11-2025 15:08,09-11-2025 15:08
+204,9.78E+12,1984,George Orwell,Fiction,HarperCollins,2021,4,4,F-104,09-11-2025 15:08,09-11-2025 15:08
+205,9.78E+12,Animal Farm,George Orwell,Fiction,Penguin Books,2020,3,3,F-105,09-11-2025 15:08,09-11-2025 15:08
+206,9.78E+12,The Girl with the Dragon Tattoo,Stieg Larsson,Fiction,Vintage,2011,3,3,F-201,09-11-2025 15:08,09-11-2025 15:08
+207,9.78E+12,Gone Girl,Gillian Flynn,Fiction,Broadway Books,2014,3,3,F-202,09-11-2025 15:08,09-11-2025 15:08
+208,9.78E+12,The Silent Patient,Alex Michaelides,Fiction,Celadon Books,2019,2,1,F-203,09-11-2025 15:08,09-11-2025 15:08
+209,9.78E+12,The Seven Husbands of Evelyn Hugo,Taylor Jenkins Reid,Fiction,Atria Books,2021,2,2,F-204,09-11-2025 15:08,09-11-2025 15:08
+210,9.78E+12,Project Hail Mary,Andy Weir,Fiction,Ballantine Books,2021,3,3,F-205,09-11-2025 15:08,09-11-2025 15:08
+211,9.78E+12,The Midnight Library,Matt Haig,Fiction,Viking,2020,3,3,F-301,09-11-2025 15:08,09-11-2025 15:08
+212,9.78E+12,It Ends with Us,Colleen Hoover,Fiction,Atria Books,2021,4,4,F-302,09-11-2025 15:08,09-11-2025 15:08
+213,9.78E+12,The Dutch House,Ann Patchett,Fiction,Harper,2019,2,2,F-303,09-11-2025 15:08,09-11-2025 15:08
+214,9.78E+12,Where the Crawdads Sing,Delia Owens,Fiction,G.P. Putnam's Sons,2021,3,2,F-304,09-11-2025 15:08,09-11-2025 15:08
+215,9.78E+12,The Handmaid's Tale,Margaret Atwood,Fiction,Anchor,2017,3,3,F-305,09-11-2025 15:08,09-11-2025 15:08
+216,9.78E+12,The Alchemist,Paulo Coelho,Fiction,HarperOne,2014,4,4,F-401,09-11-2025 15:08,09-11-2025 15:08
+217,9.78E+12,The Catcher in the Rye,J.D. Salinger,Fiction,"Little, Brown and Company",2018,2,2,F-402,09-11-2025 15:08,09-11-2025 15:08
+218,9.78E+12,The Help,Kathryn Stockett,Fiction,Berkley,2011,3,3,F-403,09-11-2025 15:08,09-11-2025 15:08
+219,9.78E+12,The Goldfinch,Donna Tartt,Fiction,"Little, Brown and Company",2014,2,2,F-404,09-11-2025 15:08,09-11-2025 15:08
+220,9.78E+12,Normal People,Sally Rooney,Fiction,Hogarth,2020,3,3,F-405,09-11-2025 15:08,09-11-2025 15:08
+221,9.78E+12,Sapiens: A Brief History of Humankind,Yuval Noah Harari,Non-Fiction,Harper Perennial,2015,4,3,NF-101,09-11-2025 15:08,09-11-2025 15:08
+222,9.78E+12,Educated,Tara Westover,Non-Fiction,Random House,2018,3,3,NF-102,09-11-2025 15:08,09-11-2025 15:08
+223,9.78E+12,The Immortal Life of Henrietta Lacks,Rebecca Skloot,Non-Fiction,Broadway Books,2011,2,2,NF-103,09-11-2025 15:08,09-11-2025 15:08
+224,9.78E+12,"Thinking, Fast and Slow",Daniel Kahneman,Non-Fiction,"Farrar, Straus and Giroux",2013,3,2,NF-104,09-11-2025 15:08,09-11-2025 15:08
+225,9.78E+12,The Power of Now,Eckhart Tolle,Non-Fiction,New World Library,2010,4,3,NF-105,09-11-2025 15:08,09-11-2025 15:08
+226,9.78E+12,Becoming,Michelle Obama,Non-Fiction,Crown,2018,3,3,NF-201,09-11-2025 15:08,09-11-2025 15:08
+227,9.78E+12,Atomic Habits,James Clear,Non-Fiction,Avery,2018,5,5,NF-202,09-11-2025 15:08,09-11-2025 15:08
+228,9.78E+12,The 7 Habits of Highly Effective People,Stephen R. Covey,Non-Fiction,Free Press,2020,3,3,NF-203,09-11-2025 15:08,09-11-2025 15:08
+229,9.78E+12,The Body Keeps the Score,Bessel van der Kolk,Non-Fiction,Penguin Books,2015,2,2,NF-204,09-11-2025 15:08,09-11-2025 15:08
+230,9.78E+12,Born a Crime,Trevor Noah,Non-Fiction,Spiegel & Grau,2019,3,3,NF-205,09-11-2025 15:08,09-11-2025 15:08
+231,9.78E+12,"Guns, Germs, and Steel",Jared Diamond,Non-Fiction,W.W. Norton & Company,2017,2,2,NF-301,09-11-2025 15:08,09-11-2025 15:08
+232,9.78E+12,The Warmth of Other Suns,Isabel Wilkerson,Non-Fiction,Vintage,2011,2,2,NF-302,09-11-2025 15:08,09-11-2025 15:08
+233,9.78E+12,Outliers: The Story of Success,Malcolm Gladwell,Non-Fiction,"Little, Brown and Company",2011,3,3,NF-303,09-11-2025 15:08,09-11-2025 15:08
+234,9.78E+12,The Devil in the White City,Erik Larson,Non-Fiction,Vintage,2004,2,2,NF-304,09-11-2025 15:08,09-11-2025 15:08
+235,9.78E+12,Bad Blood: Secrets and Lies in a Silicon Valley Startup,John Carreyrou,Non-Fiction,Knopf,2018,2,1,NF-305,09-11-2025 15:08,09-11-2025 15:08
+236,9.78E+12,Shoe Dog,Phil Knight,Non-Fiction,Scribner,2016,3,2,NF-401,09-11-2025 15:08,09-11-2025 15:08
+237,9.78E+12,The Wright Brothers,David McCullough,Non-Fiction,Simon & Schuster,2016,2,2,NF-402,09-11-2025 15:08,09-11-2025 15:08
+238,9.78E+12,Hillbilly Elegy,J.D. Vance,Non-Fiction,Harper,2018,2,2,NF-403,09-11-2025 15:08,09-11-2025 15:08
+239,9.78E+12,The Hidden Life of Trees,Peter Wohlleben,Non-Fiction,Greystone Books,2016,2,0,NF-404,09-11-2025 15:08,09-11-2025 15:08
+240,9.78E+12,Sapiens: A Graphic History,Yuval Noah Harari,Non-Fiction,Harper Perennial,2020,3,3,NF-405,09-11-2025 15:08,09-11-2025 15:08
+241,9.78E+12,Effective Java,Joshua Bloch,Computer Science,Addison-Wesley,2018,3,2,CS-101,09-11-2025 15:08,09-11-2025 15:08
+242,9.78E+12,Clean Code: A Handbook of Agile Software Craftsmanship,Robert C. Martin,Computer Science,Prentice Hall,2008,4,4,CS-102,09-11-2025 15:08,09-11-2025 15:08
+243,9.78E+12,Design Patterns: Elements of Reusable Object-Oriented Software,Gang of Four,Computer Science,Addison-Wesley,1994,2,2,CS-103,09-11-2025 15:08,09-11-2025 15:08
+244,9.78E+12,Introduction to Algorithms,Thomas H. Cormen,Computer Science,MIT Press,2022,3,3,CS-104,09-11-2025 15:08,09-11-2025 15:08
+245,9.78E+12,You Don't Know JS,Kyle Simpson,Computer Science,O'Reilly Media,2020,3,3,CS-105,09-11-2025 15:08,09-11-2025 15:08
+246,9.78E+12,Artificial Intelligence: A Modern Approach,Stuart Russell,Computer Science,Prentice Hall,2020,2,2,CS-201,09-11-2025 15:08,09-11-2025 15:08
+247,9.78E+12,Deep Learning,Ian Goodfellow,Computer Science,MIT Press,2016,2,-1,CS-202,09-11-2025 15:08,09-11-2025 15:08
+248,9.78E+12,Database System Concepts,Abraham Silberschatz,Computer Science,McGraw-Hill,2019,3,3,CS-203,09-11-2025 15:08,09-11-2025 15:08
+249,9.78E+12,Learning React: Modern Patterns for Developing React Apps,Alex Banks,Computer Science,O'Reilly Media,2020,4,4,CS-204,09-11-2025 15:08,09-11-2025 15:08
+250,9.78E+12,Node.js Design Patterns,Mario Casciaro,Computer Science,Packt Publishing,2020,3,3,CS-205,09-11-2025 15:08,09-11-2025 15:08
+251,9.78E+12,Eloquent JavaScript,Marijn Haverbeke,Computer Science,No Starch Press,2018,3,3,CS-301,09-11-2025 15:08,09-11-2025 15:08
+252,9.78E+12,The Pragmatic Programmer,Andrew Hunt,Computer Science,Addison-Wesley,2019,4,4,CS-302,09-11-2025 15:08,09-11-2025 15:08
+253,9.78E+12,System Design Interview,Alex Xu,Computer Science,Independent,2020,3,3,CS-303,09-11-2025 15:08,09-11-2025 15:08
+254,9.78E+12,Cracking the Coding Interview,Gayle Laakmann McDowell,Computer Science,CareerCup,2015,5,5,CS-304,09-11-2025 15:08,09-11-2025 15:08
+255,9.78E+12,Python Crash Course,Eric Matthes,Computer Science,No Starch Press,2019,4,4,CS-305,09-11-2025 15:08,09-11-2025 15:08
+256,9.78E+12,Calculus: Early Transcendentals,James Stewart,Mathematics,Cengage Learning,2020,3,3,MATH-101,09-11-2025 15:08,09-11-2025 15:08
+257,9.78E+12,Linear Algebra Done Right,Sheldon Axler,Mathematics,Springer,2015,2,2,MATH-102,09-11-2025 15:08,09-11-2025 15:08
+258,9.78E+12,Introduction to Statistical Learning,Gareth James,Mathematics,Springer,2021,3,3,MATH-103,09-11-2025 15:08,09-11-2025 15:08
+259,9.78E+12,Abstract Algebra,David S. Dummit,Mathematics,Wiley,2004,2,2,MATH-104,09-11-2025 15:08,09-11-2025 15:08
+260,9.78E+12,Differential Equations and Linear Algebra,Stephen W. Goode,Mathematics,Pearson,2017,2,2,MATH-105,09-11-2025 15:08,09-11-2025 15:08
+261,9.78E+12,Probability and Statistics,Morris H. DeGroot,Mathematics,Pearson,2012,3,3,MATH-201,09-11-2025 15:08,09-11-2025 15:08
+262,9.78E+12,Real Analysis,Walter Rudin,Mathematics,McGraw-Hill,1976,2,2,MATH-202,09-11-2025 15:08,09-11-2025 15:08
+263,9.78E+12,Discrete Mathematics and Its Applications,Kenneth H. Rosen,Mathematics,McGraw-Hill,2018,3,3,MATH-203,09-11-2025 15:08,09-11-2025 15:08
+264,9.78E+12,Number Theory,George E. Andrews,Mathematics,Dover Publications,1994,2,1,MATH-204,09-11-2025 15:08,09-11-2025 15:08
+265,9.78E+12,Topology,James Munkres,Mathematics,Prentice Hall,2000,2,2,MATH-205,09-11-2025 15:08,09-11-2025 15:08
+266,9.78E+12,University Physics with Modern Physics,Hugh D. Young,Physics,Pearson,2019,3,3,PHY-101,09-11-2025 15:08,09-11-2025 15:08
+267,9.78E+12,Introduction to Quantum Mechanics,David J. Griffiths,Physics,Pearson,2018,2,2,PHY-102,09-11-2025 15:08,09-11-2025 15:08
+268,9.78E+12,Classical Mechanics,Herbert Goldstein,Physics,Addison-Wesley,2002,2,2,PHY-103,09-11-2025 15:08,09-11-2025 15:08
+269,9.78E+12,Thermodynamics: An Engineering Approach,Yunus A. Çengel,Physics,McGraw-Hill,2018,3,3,PHY-104,09-11-2025 15:08,09-11-2025 15:08
+270,9.78E+12,Introduction to Electrodynamics,David J. Griffiths,Physics,Pearson,2017,2,2,PHY-105,09-11-2025 15:08,09-11-2025 15:08
+271,9.78E+12,The Feynman Lectures on Physics,Richard P. Feynman,Physics,Addison-Wesley,2005,2,2,PHY-201,09-11-2025 15:08,09-11-2025 15:08
+272,9.78E+12,Modern Physics,Paul A. Tipler,Physics,W.H. Freeman,2008,2,2,PHY-202,09-11-2025 15:08,09-11-2025 15:08
+273,9.78E+12,Statistical Mechanics,R.K. Pathria,Physics,Butterworth-Heinemann,2011,2,2,PHY-203,09-11-2025 15:08,09-11-2025 15:08
+274,9.78E+12,Optics,Eugene Hecht,Physics,Pearson,2016,2,2,PHY-204,09-11-2025 15:08,09-11-2025 15:08
+275,9.78E+12,A Brief History of Time,Stephen Hawking,Physics,Bantam,2011,3,3,PHY-205,09-11-2025 15:08,09-11-2025 15:11
+276,9.78E+12,Organic Chemistry,Paula Yurkanis Bruice,Chemistry,Pearson,2016,3,3,CHEM-101,09-11-2025 15:08,09-11-2025 15:08
+277,9.78E+12,Inorganic Chemistry,Gary L. Miessler,Chemistry,Pearson,2013,2,2,CHEM-102,09-11-2025 15:08,09-11-2025 15:08
+278,9.78E+12,Physical Chemistry,Peter Atkins,Chemistry,Oxford University Press,2017,2,2,CHEM-103,09-11-2025 15:08,09-11-2025 15:08
+279,9.78E+12,General Chemistry,Darrell Ebbing,Chemistry,Cengage Learning,2016,3,3,CHEM-104,09-11-2025 15:08,09-11-2025 15:08
+280,9.78E+12,Chemistry: The Central Science,Theodore L. Brown,Chemistry,Pearson,2017,3,2,CHEM-105,09-11-2025 15:08,09-11-2025 15:08
+281,9.78E+12,Advanced Organic Chemistry,Francis A. Carey,Chemistry,Springer,2007,2,1,CHEM-201,09-11-2025 15:08,09-11-2025 15:08
+282,9.78E+12,Biochemistry,Jeremy M. Berg,Chemistry,W.H. Freeman,2015,2,2,CHEM-202,09-11-2025 15:08,09-11-2025 15:08
+283,9.78E+12,Analytical Chemistry,Douglas A. Skoog,Chemistry,Cengage Learning,2017,2,2,CHEM-203,09-11-2025 15:08,09-11-2025 15:08
+284,9.78E+12,Campbell Biology,Lisa A. Urry,Biology,Pearson,2020,3,3,BIO-101,09-11-2025 15:08,09-11-2025 15:08
+285,9.78E+12,Molecular Biology of the Cell,Bruce Alberts,Biology,Garland Science,2014,2,1,BIO-102,09-11-2025 15:08,09-11-2025 15:08
+286,9.78E+12,Genetics: Analysis and Principles,Robert J. Brooker,Biology,McGraw-Hill,2017,2,2,BIO-103,09-11-2025 15:08,09-11-2025 15:08
+287,9.78E+12,Ecology: Concepts and Applications,Manuel C. Molles,Biology,McGraw-Hill,2018,2,2,BIO-104,09-11-2025 15:08,09-11-2025 15:08
+288,9.78E+12,Human Anatomy & Physiology,Elaine N. Marieb,Biology,Pearson,2018,3,3,BIO-105,09-11-2025 15:08,09-11-2025 15:08
+289,9.78E+12,The Selfish Gene,Richard Dawkins,Biology,Oxford University Press,2016,3,3,BIO-201,09-11-2025 15:08,09-11-2025 15:08
+290,9.78E+12,Sapiens: A Brief History of Humankind,Yuval Noah Harari,Biology,Harper Perennial,2015,2,2,BIO-202,09-11-2025 15:08,09-11-2025 15:08
+291,9.78E+12,The Origin of Species,Charles Darwin,Biology,Penguin Classics,2009,2,1,BIO-203,09-11-2025 15:08,09-11-2025 15:08
+292,9.78E+12,Good to Great,Jim Collins,Business,HarperBusiness,2001,3,3,BUS-101,09-11-2025 15:08,09-11-2025 15:08
+293,9.78E+12,The Lean Startup,Eric Ries,Business,Crown Business,2011,4,4,BUS-102,09-11-2025 15:08,09-11-2025 15:08
+294,9.78E+12,Principles of Marketing,Philip Kotler,Business,Pearson,2020,3,2,BUS-103,09-11-2025 15:08,09-11-2025 15:08
+295,9.78E+12,Financial Accounting,Jerry J. Weygandt,Business,Wiley,2018,3,3,BUS-104,09-11-2025 15:08,09-11-2025 15:08
+296,9.78E+12,"Thinking, Fast and Slow",Daniel Kahneman,Business,"Farrar, Straus and Giroux",2013,2,2,BUS-105,09-11-2025 15:08,09-11-2025 15:08
+297,9.78E+12,The Innovator's Dilemma,Clayton M. Christensen,Business,Harvard Business Review Press,2016,2,1,BUS-201,09-11-2025 15:08,09-11-2025 15:08
+298,9.78E+12,Zero to One,Peter Thiel,Business,Crown Business,2014,3,3,BUS-202,09-11-2025 15:08,09-11-2025 15:08
+299,9.78E+12,The Hard Thing About Hard Things,Ben Horowitz,Business,HarperBusiness,2014,2,2,BUS-203,09-11-2025 15:08,09-11-2025 15:08
+300,9.78E+12,Principles: Life and Work,Ray Dalio,Business,Simon & Schuster,2017,2,2,BUS-204,09-11-2025 15:08,09-11-2025 15:08
+301,9.78E+12,Gansh biography,Ganesh,Bussiness,Sampire book house,2025,5,5,BUS-205,########,########

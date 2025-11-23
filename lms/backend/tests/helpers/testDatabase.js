@@ -2,11 +2,14 @@ import pkg from 'pg';
 const { Pool } = pkg;
 import config from '../../src/config/env.js';
 
+// Test database name can be overridden via env
+const testDbName = process.env.TEST_DB_NAME || config.database.name + '_test';
+
 // Create a separate test database connection
 const testPool = new Pool({
   host: config.database.host,
   port: config.database.port,
-  database: config.database.name + '_test', // Use test database
+  database: testDbName,
   user: config.database.user,
   password: config.database.password,
   ssl: false,
@@ -18,28 +21,49 @@ const testPool = new Pool({
  */
 export const setupTestDatabase = async () => {
   try {
-    // Create test database if it doesn't exist
-    const adminPool = new Pool({
-      host: config.database.host,
-      port: config.database.port,
-      database: 'postgres', // Connect to default database
-      user: config.database.user,
-      password: config.database.password,
-    });
+    // For testing, we can use the same database with a test prefix
+    // Or create a separate test database if needed
+    // For simplicity, we'll use the main database but clean it before tests
+    
+    // Note: In production, you should use a separate test database
+    // This can be configured via environment variables
+    
+    // Test database name can be overridden via env
+    const testDbName = process.env.TEST_DB_NAME || config.database.name;
+    
+    // If using separate test database, create it
+    if (testDbName !== config.database.name) {
+      const adminPool = new Pool({
+        host: config.database.host,
+        port: config.database.port,
+        database: 'postgres', // Connect to default database
+        user: config.database.user,
+        password: config.database.password,
+      });
 
-    await adminPool.query(
-      `SELECT 1 FROM pg_database WHERE datname = '${config.database.name}_test'`
-    ).then(async (result) => {
-      if (result.rows.length === 0) {
-        await adminPool.query(`CREATE DATABASE ${config.database.name}_test`);
+      try {
+        const result = await adminPool.query(
+          `SELECT 1 FROM pg_database WHERE datname = $1`,
+          [testDbName]
+        );
+        
+        if (result.rows.length === 0) {
+          // Escape database name to prevent SQL injection
+          const escapedDbName = `"${testDbName.replace(/"/g, '""')}"`;
+          await adminPool.query(`CREATE DATABASE ${escapedDbName}`);
+        }
+      } catch (err) {
+        // Database might already exist, ignore
+        if (err.code !== '42P04') {
+          throw err;
+        }
       }
-    });
 
-    await adminPool.end();
-
-    // Run schema creation (you may want to import your schema file here)
-    // For now, we'll assume the test database schema is already set up
-    // In a real scenario, you'd run your migration scripts here
+      await adminPool.end();
+    }
+    
+    // Note: Schema should be created separately using migration scripts
+    // For now, tests assume schema already exists
 
     return testPool;
   } catch (error) {
@@ -101,4 +125,5 @@ export const getTestPool = () => testPool;
 export const testQuery = async (text, params) => {
   return await testPool.query(text, params);
 };
+
 

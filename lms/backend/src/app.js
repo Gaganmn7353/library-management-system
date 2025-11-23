@@ -1,6 +1,8 @@
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
+import swaggerUi from 'swagger-ui-express';
+import swaggerSpec from './config/swagger.js';
 import config from './config/env.js';
 import morganMiddleware from './middleware/morgan.js';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler.js';
@@ -52,6 +54,12 @@ app.get('/api/health', (req, res) => {
     environment: config.nodeEnv,
   });
 });
+
+// Swagger API Documentation
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
+  customCss: '.swagger-ui .topbar { display: none }',
+  customSiteTitle: 'Library Management System API Documentation',
+}));
 
 // API Routes
 app.use('/api/auth', authRoutes);

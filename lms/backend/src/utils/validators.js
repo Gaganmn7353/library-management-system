@@ -444,6 +444,16 @@ export const validateQuery = {
       .optional()
       .isIn(['true', 'false', '1', '0'])
       .withMessage('Export CSV must be true or false'),
+    query('member_id')
+      .optional()
+      .isInt({ min: 1 })
+      .withMessage('Member ID must be a positive integer')
+      .toInt(),
+    query('book_id')
+      .optional()
+      .isInt({ min: 1 })
+      .withMessage('Book ID must be a positive integer')
+      .toInt(),
     handleValidationErrors,
   ],
 };

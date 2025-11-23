@@ -118,7 +118,6 @@ export const memberModel = {
    * Get all members with pagination
    */
   async findAll({ page = 1, limit = 10, offset, filters = {} }) {
-    const offset = (page - 1) * limit;
     const conditions = [];
     const values = [];
     let paramCount = 1;

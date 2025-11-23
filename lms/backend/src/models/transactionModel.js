@@ -90,7 +90,7 @@ export const transactionModel = {
    * Get all transactions with pagination
    */
   async findAll({ page = 1, limit = 10, offset, filters = {} }) {
-    const offset = (page - 1) * limit;
+    const off = offset !== undefined ? offset : (page - 1) * limit;
     const conditions = [];
     const values = [];
     let paramCount = 1;
@@ -114,7 +114,7 @@ export const transactionModel = {
     }
 
     const whereClause = conditions.length > 0 ? `WHERE ${conditions.join(' AND ')}` : '';
-    values.push(limit, offset);
+    values.push(limit, off);
 
     const sql = `
       SELECT t.*,

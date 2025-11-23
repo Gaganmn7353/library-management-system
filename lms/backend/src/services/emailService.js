@@ -180,7 +180,7 @@ class EmailService {
     const text = `Book Return Confirmation\n\nDear ${member_name || 'Member'},\n\nThe book "${book_title}" has been returned on ${new Date(return_date).toLocaleDateString()}. ${fine_amount > 0 ? `Fine: ₹${parseFloat(fine_amount).toFixed(2)}` : 'No fine charged.'}\n\nThank you!`;
 
     return await this.sendEmail({ to: member_email, subject, html, text });
-  },
+  }
 
   /**
    * Send reservation fulfillment notification
@@ -209,7 +209,7 @@ class EmailService {
     const text = `Your Reserved Book is Available!\n\nDear ${member_name || 'Member'},\n\nThe book "${book_title}" is now available for collection. Please collect it within 48 hours (by ${new Date(expiry_date).toLocaleString()}) or your reservation will be cancelled.\n\nThank you!`;
 
     return await this.sendEmail({ to: member_email, subject, html, text });
-  },
+  }
 
   /**
    * Send reservation expiry reminder (24 hours before expiry)
@@ -237,7 +237,7 @@ class EmailService {
     const text = `Reservation Expiring Soon\n\nDear ${member_name || 'Member'},\n\nYour reservation for "${book_title}" will expire on ${new Date(expiry_date).toLocaleString()}. Please collect the book soon.\n\nThank you!`;
 
     return await this.sendEmail({ to: member_email, subject, html, text });
-  },
+  }
 }
 
 // Export singleton instance

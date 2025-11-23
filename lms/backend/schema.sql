@@ -34,7 +34,7 @@ CREATE TABLE books (
     author VARCHAR(255) NOT NULL,
     isbn VARCHAR(20) NOT NULL UNIQUE,
     publisher VARCHAR(255),
-    publication_year INTEGER CHECK (publication_year >= 1000 AND publication_year <= EXTRACT(YEAR FROM CURRENT_DATE) + 1),
+    publication_year INTEGER CHECK (publication_year >= 1000 AND publication_year <= DATE_PART('year', CURRENT_DATE)::INTEGER + 1),
     category VARCHAR(100),
     quantity INTEGER NOT NULL DEFAULT 0 CHECK (quantity >= 0),
     available_quantity INTEGER NOT NULL DEFAULT 0 CHECK (available_quantity >= 0),
@@ -285,7 +285,7 @@ SELECT
     b.isbn AS book_isbn,
     CASE 
         WHEN t.status = 'issued' AND t.due_date < CURRENT_DATE THEN 
-            EXTRACT(DAY FROM CURRENT_DATE - t.due_date)::INTEGER
+            (CURRENT_DATE - t.due_date)::INTEGER
         ELSE 0
     END AS days_overdue
 FROM transactions t

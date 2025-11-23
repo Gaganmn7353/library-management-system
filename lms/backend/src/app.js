@@ -20,6 +20,8 @@ import finePaymentRoutes from './routes/finePaymentRoutes.js';
 import fineRoutes from './routes/fineRoutes.js';
 import dashboardRoutes from './routes/dashboardRoutes.js';
 import reportsRoutes from './routes/reportsRoutes.js';
+import exportRoutes from './routes/exportRoutes.js';
+import importRoutes from './routes/importRoutes.js';
 
 const app = express();
 
@@ -71,6 +73,8 @@ app.use('/api/fine-payments', finePaymentRoutes); // Legacy route for admin acce
 app.use('/api/fines', fineRoutes); // New route for member and admin access
 app.use('/api/dashboard', dashboardRoutes); // Admin dashboard statistics
 app.use('/api/reports', reportsRoutes); // Admin reports
+app.use('/api/export', exportRoutes); // Excel export endpoints
+app.use('/api/import', importRoutes); // Excel import endpoints
 
 // 404 handler
 app.use(notFoundHandler);

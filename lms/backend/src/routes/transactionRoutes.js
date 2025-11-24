@@ -53,10 +53,26 @@ router.post(
   transactionController.issueBook
 );
 
+router.post(
+  '/',
+  isLibrarian,
+  validateTransaction.create,
+  validateRequest,
+  transactionController.issueBook
+);
+
 // Return a book (librarians and admins only)
 // Route order matters: specific routes before parameterized routes
 router.post(
   '/return/:id',
+  isLibrarian,
+  validateTransaction.id,
+  validateRequest,
+  transactionController.returnBook
+);
+
+router.put(
+  '/:id/return',
   isLibrarian,
   validateTransaction.id,
   validateRequest,

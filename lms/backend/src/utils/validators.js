@@ -181,18 +181,29 @@ export const validateBook = {
 // Member validation rules
 export const validateMember = {
   create: [
-    body('user_id').isInt({ min: 1 }).withMessage('User ID is required'),
-    body('member_id').trim().notEmpty().withMessage('Member ID is required').isLength({ max: 50 }),
+    body('user_id').optional().isInt({ min: 1 }).withMessage('User ID must be a positive integer').toInt(),
+    body('member_id').optional().trim().isLength({ max: 50 }).withMessage('Member ID must be less than 50 characters'),
+    body('name').optional().trim().isLength({ max: 255 }).withMessage('Name must be less than 255 characters'),
+    body('email')
+      .if((value, { req }) => !req.body.user_id)
+      .notEmpty()
+      .withMessage('Email is required when user_id is not provided')
+      .bail()
+      .isEmail()
+      .withMessage('Please provide a valid email address')
+      .normalizeEmail(),
     body('phone').optional().trim().isLength({ max: 20 }),
     body('address').optional().trim(),
+    body('member_type').optional().trim().isLength({ max: 30 }),
     body('membership_date').optional().isISO8601().withMessage('Invalid membership date'),
-    body('membership_expiry').isISO8601().withMessage('Membership expiry date is required'),
+    body('membership_expiry').optional().isISO8601().withMessage('Invalid membership expiry date'),
     body('status').optional().isIn(Object.values(MEMBER_STATUS)).withMessage('Invalid status'),
     handleValidationErrors,
   ],
   update: [
     body('phone').optional().trim().isLength({ max: 20 }),
     body('address').optional().trim(),
+    body('member_type').optional().trim().isLength({ max: 30 }),
     body('membership_expiry').optional().isISO8601().withMessage('Invalid membership expiry date'),
     body('status').optional().isIn(Object.values(MEMBER_STATUS)).withMessage('Invalid status'),
     handleValidationErrors,
@@ -370,7 +381,7 @@ export const validateFinePayment = {
 export const validateQuery = {
   pagination: [
     query('page').optional().isInt({ min: 1 }).withMessage('Page must be a positive integer').toInt(),
-    query('limit').optional().isInt({ min: 1, max: 100 }).withMessage('Limit must be between 1 and 100').toInt(),
+    query('limit').optional().isInt({ min: 1, max: 200 }).withMessage('Limit must be between 1 and 200').toInt(),
     handleValidationErrors,
   ],
   search: [
@@ -423,11 +434,6 @@ export const validateQuery = {
         }
         return true;
       }),
-    query('limit')
-      .optional()
-      .isInt({ min: 1, max: 100 })
-      .withMessage('Limit must be between 1 and 100')
-      .toInt(),
     query('group_by')
       .optional()
       .isIn(['day', 'week', 'month'])

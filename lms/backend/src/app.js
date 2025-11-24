@@ -22,14 +22,39 @@ import dashboardRoutes from './routes/dashboardRoutes.js';
 import reportsRoutes from './routes/reportsRoutes.js';
 import exportRoutes from './routes/exportRoutes.js';
 import importRoutes from './routes/importRoutes.js';
+import userRoutes from './routes/userRoutes.js';
 
 const app = express();
 
 // Security middleware
 app.use(helmet());
 
-// CORS configuration
-app.use(cors(config.cors));
+// CORS configuration - Allow multiple origins for development
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    const allowedOrigins = [
+      config.cors.origin,
+      'http://localhost:3000',
+      'http://127.0.0.1:3000',
+      'http://localhost:5173', // Vite default port
+      'http://127.0.0.1:5173',
+    ];
+    
+    if (allowedOrigins.indexOf(origin) !== -1 || process.env.NODE_ENV === 'development') {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'PATCH', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+};
+
+app.use(cors(corsOptions));
 
 // XSS protection
 app.use(xssProtection);
@@ -54,6 +79,21 @@ app.get('/api/health', (req, res) => {
     message: 'Library Management System API is running',
     timestamp: new Date().toISOString(),
     environment: config.nodeEnv,
+    port: config.port,
+    cors: config.cors.origin,
+  });
+});
+
+// Root endpoint
+app.get('/', (req, res) => {
+  res.json({
+    message: 'Library Management System API',
+    version: '1.0.0',
+    endpoints: {
+      health: '/api/health',
+      docs: '/api-docs',
+      auth: '/api/auth',
+    },
   });
 });
 
@@ -75,6 +115,7 @@ app.use('/api/dashboard', dashboardRoutes); // Admin dashboard statistics
 app.use('/api/reports', reportsRoutes); // Admin reports
 app.use('/api/export', exportRoutes); // Excel export endpoints
 app.use('/api/import', importRoutes); // Excel import endpoints
+app.use('/api/users', userRoutes);
 
 // 404 handler
 app.use(notFoundHandler);

@@ -18,12 +18,13 @@ const pool = new Pool({
 
 // Event listeners for pool
 pool.on('connect', () => {
-  logger.info('Database connection established');
+  logger.info('✅ Database connection established');
 });
 
 pool.on('error', (err) => {
-  logger.error('Unexpected error on idle client', err);
-  process.exit(-1);
+  logger.error('❌ Unexpected error on idle database client', err);
+  // Don't exit immediately - let the app try to reconnect
+  logger.warn('⚠️ Database connection error. The app will continue but database operations may fail.');
 });
 
 // Test database connection

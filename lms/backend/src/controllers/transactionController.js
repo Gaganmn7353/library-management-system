@@ -56,7 +56,7 @@ export const transactionController = {
    * Uses database transaction to ensure data consistency
    */
   issueBook: asyncHandler(async (req, res) => {
-    const { member_id, book_id, issue_date } = req.body;
+    const { member_id, book_id, issue_date, due_date } = req.body;
 
     // Get database client for transaction
     const client = await getClient();
@@ -141,15 +141,22 @@ export const transactionController = {
 
       const book = bookResult.rows[0];
 
-      if (book.available_quantity <= 0) {
+      // Support both available_quantity (new) and available_copies (legacy)
+      const availableCount = book.available_quantity !== undefined ? book.available_quantity : (book.available_copies || 0);
+      if (availableCount <= 0) {
         await client.query('ROLLBACK');
         throw new AppError(MESSAGES.ERROR.BOOK_NOT_AVAILABLE, HTTP_STATUS.BAD_REQUEST);
       }
 
-      // Set dates
+      // Set dates - support both issue_date and due_date from frontend
       const issueDate = issue_date ? new Date(issue_date) : new Date();
-      const dueDate = new Date(issueDate);
-      dueDate.setDate(dueDate.getDate() + LOAN_PERIOD_DAYS);
+      let finalDueDate;
+      if (due_date) {
+        finalDueDate = new Date(due_date);
+      } else {
+        finalDueDate = new Date(issueDate);
+        finalDueDate.setDate(finalDueDate.getDate() + LOAN_PERIOD_DAYS);
+      }
 
       // Create transaction
       const transactionResult = await client.query(
@@ -160,7 +167,7 @@ export const transactionController = {
           member_id,
           book_id,
           issueDate.toISOString().split('T')[0],
-          dueDate.toISOString().split('T')[0],
+          finalDueDate.toISOString().split('T')[0],
           TRANSACTION_STATUS.ISSUED,
           0,
         ]
@@ -168,9 +175,13 @@ export const transactionController = {
 
       const transaction = transactionResult.rows[0];
 
-      // Update book available quantity
+      // Update book available quantity - support both available_quantity and available_copies
       await client.query(
-        'UPDATE books SET available_quantity = available_quantity - 1, updated_at = CURRENT_TIMESTAMP WHERE id = $1',
+        `UPDATE books 
+         SET available_quantity = COALESCE(available_quantity, available_copies, 0) - 1,
+             available_copies = COALESCE(available_copies, available_quantity, 0) - 1,
+             updated_at = CURRENT_TIMESTAMP 
+         WHERE id = $1`,
         [book_id]
       );
 

@@ -19,7 +19,9 @@ export default function Login() {
       await login(username, password);
       navigate('/dashboard');
     } catch (error) {
+      // Error is already handled in AuthContext with toast
       console.error('Login error:', error);
+      // Don't show duplicate error messages
     } finally {
       setLoading(false);
     }

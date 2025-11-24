@@ -39,12 +39,18 @@ export default function Books() {
   const fetchBooks = async (params) => {
     setLoading(true);
     try {
+      console.log('[Books] Fetching catalog', Object.fromEntries(params.entries?.() || []));
       const response = await api.get('/books', { params });
-      setBooks(response.data.books);
-      setPagination(response.data.pagination);
+      // Backend returns { success, message, data: { books, pagination } }
+      const data = response.data?.data || response.data;
+      setBooks(data?.books || []);
+      setPagination(data?.pagination || null);
     } catch (error) {
+      console.error('[Books] Failed to load books', error);
       toast.error('Failed to load books');
       console.error('Books error:', error);
+      setBooks([]);
+      setPagination(null);
     } finally {
       setLoading(false);
     }
@@ -54,10 +60,12 @@ export default function Books() {
     if (!window.confirm('Are you sure you want to delete this book?')) return;
 
     try {
+      console.log('[Books] Deleting book', { id });
       await api.delete(`/books/${id}`);
       toast.success('Book deleted successfully');
       fetchBooks(new URLSearchParams(searchParams));
     } catch (error) {
+      console.error('[Books] Failed to delete book', error);
       toast.error(error.response?.data?.error || 'Failed to delete book');
     }
   };
@@ -74,10 +82,10 @@ export default function Books() {
   ];
 
   return (
-    <div className="min-h-screen p-6">
+    <div className="min-h-screen p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Books Catalog</h1>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 sm:mb-8 gap-4">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Books Catalog</h1>
           {isLibrarian && (
             <Link
               to="/books/add"
@@ -134,8 +142,8 @@ export default function Books() {
             </div>
           </div>
 
-          <div className="flex items-center justify-between mt-4">
-            <div className="flex items-center space-x-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between mt-4 gap-4">
+            <div className="flex flex-col sm:flex-row items-stretch sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
               <select
                 value={sort}
                 onChange={(e) => setSort(e.target.value)}
@@ -170,7 +178,7 @@ export default function Books() {
             </div>
 
             {pagination && (
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 text-center sm:text-left">
                 Showing {books.length} of {pagination.total} books
               </p>
             )}

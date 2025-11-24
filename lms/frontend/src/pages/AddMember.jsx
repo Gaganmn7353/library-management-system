@@ -42,14 +42,19 @@ export default function AddMember() {
 
   const fetchMember = async () => {
     try {
+      console.log('[AddMember] Fetching member for edit', { id });
       const response = await api.get(`/members/${id}`);
-      const member = response.data;
-      setValue('member_id', member.member_id);
-      setValue('name', member.name);
-      setValue('email', member.email);
-      setValue('phone', member.phone || '');
-      setValue('member_type', member.member_type);
-      setValue('status', member.status);
+      // Backend returns { success, message, data: member } (member is directly in data)
+      const data = response.data?.data || response.data;
+      const member = data?.member || data;
+      if (member) {
+        setValue('member_id', member.member_id);
+        setValue('name', member.name);
+        setValue('email', member.email);
+        setValue('phone', member.phone || '');
+        setValue('member_type', member.member_type);
+        setValue('status', member.status);
+      }
     } catch (error) {
       toast.error('Failed to load member');
       navigate('/members');
@@ -59,6 +64,7 @@ export default function AddMember() {
   const onSubmit = async (data) => {
     setLoading(true);
     try {
+      console.log('[AddMember] Submitting form', { isEdit, payload: data });
       if (isEdit) {
         await api.put(`/members/${id}`, data);
         toast.success('Member updated successfully');
@@ -71,6 +77,7 @@ export default function AddMember() {
       }
       navigate('/members');
     } catch (error) {
+      console.error('[AddMember] Failed to save member', error);
       toast.error(error.response?.data?.error || 'Failed to save member');
     } finally {
       setLoading(false);
@@ -78,7 +85,7 @@ export default function AddMember() {
   };
 
   return (
-    <div className="min-h-screen p-6">
+    <div className="min-h-screen p-4 sm:p-6">
       <div className="max-w-2xl mx-auto">
         <button
           onClick={() => navigate('/members')}
@@ -89,7 +96,7 @@ export default function AddMember() {
         </button>
 
         <div className="card">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
             {isEdit ? 'Edit Member' : 'Add New Member'}
           </h1>
 

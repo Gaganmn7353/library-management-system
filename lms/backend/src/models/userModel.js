@@ -6,13 +6,13 @@ export const userModel = {
    * Create a new user
    */
   async create(userData) {
-    const { username, email, password_hash, role = 'member' } = userData;
+    const { username, email, password_hash, role = 'member', status = 'active', updated_by = null } = userData;
     const sql = `
-      INSERT INTO users (username, email, password_hash, role)
-      VALUES ($1, $2, $3, $4)
-      RETURNING id, username, email, role, created_at, updated_at
+      INSERT INTO users (username, email, password_hash, role, status, updated_by)
+      VALUES ($1, $2, $3, $4, $5, $6)
+      RETURNING id, username, email, role, status, last_login, updated_by, created_at, updated_at
     `;
-    const result = await query(sql, [username, email, password_hash, role]);
+    const result = await query(sql, [username, email, password_hash, role, status, updated_by]);
     return result.rows[0];
   },
 
@@ -20,7 +20,7 @@ export const userModel = {
    * Find user by ID
    */
   async findById(id) {
-    const sql = 'SELECT id, username, email, role, created_at, updated_at FROM users WHERE id = $1';
+    const sql = 'SELECT id, username, email, role, status, last_login, updated_by, created_at, updated_at FROM users WHERE id = $1';
     const result = await query(sql, [id]);
     return result.rows[0];
   },
@@ -77,7 +77,7 @@ export const userModel = {
       UPDATE users
       SET ${fields.join(', ')}, updated_at = CURRENT_TIMESTAMP
       WHERE id = $${paramCount}
-      RETURNING id, username, email, role, created_at, updated_at
+      RETURNING id, username, email, role, status, last_login, updated_by, created_at, updated_at
     `;
     const result = await query(sql, values);
     return result.rows[0];
@@ -117,7 +117,7 @@ export const userModel = {
     values.push(limit, offset);
 
     const sql = `
-      SELECT id, username, email, role, created_at, updated_at
+      SELECT id, username, email, role, status, last_login, updated_by, created_at, updated_at
       FROM users
       ${whereClause}
       ORDER BY created_at DESC

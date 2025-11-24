@@ -30,11 +30,17 @@ export default function Members() {
         page: page,
         limit: 10,
       };
+      console.log('[Members] Fetching members', params);
       const response = await api.get('/members', { params });
-      setMembers(response.data.members);
-      setPagination(response.data.pagination);
+      // Backend returns { success, message, data: { members, pagination } }
+      const data = response.data?.data || response.data;
+      setMembers(data?.members || []);
+      setPagination(data?.pagination || null);
     } catch (error) {
+      console.error('[Members] Failed to load members', error);
       toast.error('Failed to load members');
+      setMembers([]);
+      setPagination(null);
     } finally {
       setLoading(false);
     }
@@ -44,19 +50,21 @@ export default function Members() {
     if (!window.confirm('Are you sure you want to delete this member?')) return;
 
     try {
+      console.log('[Members] Deleting member', { id });
       await api.delete(`/members/${id}`);
       toast.success('Member deleted successfully');
       fetchMembers();
     } catch (error) {
+      console.error('[Members] Failed to delete member', error);
       toast.error(error.response?.data?.error || 'Failed to delete member');
     }
   };
 
   return (
-    <div className="min-h-screen p-6">
+    <div className="min-h-screen p-4 sm:p-6">
       <div className="max-w-7xl mx-auto">
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white">Members</h1>
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-6 sm:mb-8 gap-4">
+          <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white">Members</h1>
           <Link
             to="/members/add"
             className="btn-primary flex items-center space-x-2"
@@ -113,41 +121,47 @@ export default function Members() {
             </div>
           </div>
         ) : (
-          <div className="card overflow-x-auto">
-            <table className="w-full">
-              <thead>
-                <tr className="border-b border-gray-200 dark:border-gray-700">
-                  <th className="text-left py-3 px-4 text-sm font-semibold">Member ID</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold">Name</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold">Email</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold">Type</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold">Status</th>
-                  <th className="text-left py-3 px-4 text-sm font-semibold">Actions</th>
-                </tr>
-              </thead>
+          <div className="card overflow-x-auto -mx-4 sm:mx-0">
+            <div className="inline-block min-w-full align-middle">
+              <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+                <thead>
+                  <tr className="border-b border-gray-200 dark:border-gray-700">
+                    <th className="text-left py-3 px-2 sm:px-4 text-xs sm:text-sm font-semibold">Member ID</th>
+                    <th className="text-left py-3 px-2 sm:px-4 text-xs sm:text-sm font-semibold">Name</th>
+                    <th className="text-left py-3 px-2 sm:px-4 text-xs sm:text-sm font-semibold hidden md:table-cell">Email</th>
+                    <th className="text-left py-3 px-2 sm:px-4 text-xs sm:text-sm font-semibold">Type</th>
+                    <th className="text-left py-3 px-2 sm:px-4 text-xs sm:text-sm font-semibold">Status</th>
+                    <th className="text-left py-3 px-2 sm:px-4 text-xs sm:text-sm font-semibold">Actions</th>
+                  </tr>
+                </thead>
               <tbody>
                 {members.map((member) => (
                   <tr
                     key={member.id}
                     className="border-b border-gray-200 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-700/50"
                   >
-                    <td className="py-3 px-4">{member.member_id}</td>
-                    <td className="py-3 px-4 font-medium">{member.name}</td>
-                    <td className="py-3 px-4">{member.email}</td>
-                    <td className="py-3 px-4">
-                      <span className="badge badge-info capitalize">{member.member_type}</span>
+                    <td className="py-3 px-2 sm:px-4 text-xs sm:text-sm">{member.member_id}</td>
+                    <td className="py-3 px-2 sm:px-4 font-medium text-sm sm:text-base">
+                      <div>
+                        <div>{member.name}</div>
+                        <div className="text-xs text-gray-500 dark:text-gray-400 md:hidden">{member.email}</div>
+                      </div>
                     </td>
-                    <td className="py-3 px-4">
+                    <td className="py-3 px-2 sm:px-4 text-xs sm:text-sm hidden md:table-cell">{member.email}</td>
+                    <td className="py-3 px-2 sm:px-4">
+                      <span className="badge badge-info capitalize text-xs">{member.member_type}</span>
+                    </td>
+                    <td className="py-3 px-2 sm:px-4">
                       <span
-                        className={`badge ${
+                        className={`badge text-xs ${
                           member.status === 'active' ? 'badge-success' : 'badge-danger'
                         }`}
                       >
                         {member.status}
                       </span>
                     </td>
-                    <td className="py-3 px-4">
-                      <div className="flex items-center space-x-2">
+                    <td className="py-3 px-2 sm:px-4">
+                      <div className="flex items-center space-x-1 sm:space-x-2">
                         <Link
                           to={`/members/edit/${member.id}`}
                           className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded"
@@ -165,10 +179,11 @@ export default function Members() {
                   </tr>
                 ))}
               </tbody>
-            </table>
+              </table>
+            </div>
 
             {pagination && pagination.pages > 1 && (
-              <div className="flex items-center justify-center space-x-2 mt-4">
+              <div className="flex items-center justify-center space-x-2 mt-4 px-2 sm:px-4">
                 <button
                   onClick={() => setPage(page - 1)}
                   disabled={page === 1}
@@ -176,7 +191,7 @@ export default function Members() {
                 >
                   Previous
                 </button>
-                <span className="text-gray-600 dark:text-gray-400">
+                <span className="text-gray-600 dark:text-gray-400 text-xs sm:text-sm">
                   Page {page} of {pagination.pages}
                 </span>
                 <button

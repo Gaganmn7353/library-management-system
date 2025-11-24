@@ -1,6 +1,7 @@
 import express from 'express';
 import { memberController } from '../controllers/memberController.js';
 import { authenticate, isLibrarian } from '../middleware/auth.js';
+import { validateRequest } from '../middleware/validateRequest.js';
 import { validateMember, validateQuery } from '../utils/validators.js';
 
 const router = express.Router();
@@ -13,6 +14,9 @@ router.get(
   '/',
   isLibrarian,
   validateQuery.pagination,
+  validateQuery.search,
+  validateQuery.filters,
+  validateRequest,
   memberController.getAllMembers
 );
 
@@ -20,6 +24,7 @@ router.get(
 router.get(
   '/:id',
   validateMember.id,
+  validateRequest,
   memberController.getMemberById
 );
 
@@ -28,6 +33,7 @@ router.post(
   '/',
   isLibrarian,
   validateMember.create,
+  validateRequest,
   memberController.createMember
 );
 
@@ -37,6 +43,7 @@ router.put(
   isLibrarian,
   validateMember.id,
   validateMember.update,
+  validateRequest,
   memberController.updateMember
 );
 
@@ -45,6 +52,7 @@ router.delete(
   '/:id',
   isLibrarian,
   validateMember.id,
+  validateRequest,
   memberController.deleteMember
 );
 
@@ -53,6 +61,7 @@ router.get(
   '/:id/transactions',
   validateMember.id,
   validateQuery.pagination,
+  validateRequest,
   memberController.getMemberTransactions
 );
 
@@ -60,6 +69,7 @@ router.get(
 router.get(
   '/:id/reservations',
   validateMember.id,
+  validateRequest,
   memberController.getMemberReservations
 );
 

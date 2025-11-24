@@ -41,8 +41,11 @@ export default function AddBook() {
 
   const fetchBook = async () => {
     try {
+      console.log('[AddBook] Fetching book for edit', { id });
       const response = await api.get(`/books/${id}`);
-      const book = response.data;
+      // Backend returns { success, message, data: { book } }
+      const data = response.data?.data || response.data;
+      const book = data?.book || data;
       setValue('isbn', book.isbn);
       setValue('title', book.title);
       setValue('author', book.author);
@@ -60,6 +63,7 @@ export default function AddBook() {
   const onSubmit = async (data) => {
     setLoading(true);
     try {
+      console.log('[AddBook] Submitting form', { isEdit, payload: data });
       if (isEdit) {
         await api.put(`/books/${id}`, {
           ...data,
@@ -75,6 +79,7 @@ export default function AddBook() {
       }
       navigate('/books');
     } catch (error) {
+      console.error('[AddBook] Failed to save book', error);
       toast.error(error.response?.data?.error || 'Failed to save book');
     } finally {
       setLoading(false);
@@ -93,7 +98,7 @@ export default function AddBook() {
   ];
 
   return (
-    <div className="min-h-screen p-6">
+    <div className="min-h-screen p-4 sm:p-6">
       <div className="max-w-2xl mx-auto">
         <button
           onClick={() => navigate('/books')}
@@ -104,7 +109,7 @@ export default function AddBook() {
         </button>
 
         <div className="card">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
+          <h1 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-4 sm:mb-6">
             {isEdit ? 'Edit Book' : 'Add New Book'}
           </h1>
 

@@ -1,8 +1,8 @@
 import { Navigate } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 
-export default function ProtectedRoute({ children, requireLibrarian = false }) {
-  const { user, loading, isLibrarian } = useAuth();
+export default function ProtectedRoute({ children, requireLibrarian = false, requireAdmin = false }) {
+  const { user, loading, isLibrarian, isAdmin } = useAuth();
 
   if (loading) {
     return (
@@ -14,6 +14,10 @@ export default function ProtectedRoute({ children, requireLibrarian = false }) {
 
   if (!user) {
     return <Navigate to="/login" replace />;
+  }
+
+  if (requireAdmin && !isAdmin) {
+    return <Navigate to="/books" replace />;
   }
 
   if (requireLibrarian && !isLibrarian) {

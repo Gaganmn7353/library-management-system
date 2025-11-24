@@ -16,8 +16,8 @@ export const memberModel = {
     } = memberData;
 
     const sql = `
-      INSERT INTO members (user_id, member_id, phone, address, membership_date, membership_expiry, status)
-      VALUES ($1, $2, $3, $4, $5, $6, $7)
+      INSERT INTO members (user_id, member_id, phone, address, membership_date, membership_expiry, status, member_type)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8)
       RETURNING *
     `;
     const result = await query(sql, [
@@ -28,6 +28,7 @@ export const memberModel = {
       membership_date || new Date(),
       membership_expiry,
       status,
+      memberData.member_type || 'regular',
     ]);
     return result.rows[0];
   },
@@ -125,6 +126,12 @@ export const memberModel = {
     if (filters.status) {
       conditions.push(`m.status = $${paramCount}`);
       values.push(filters.status);
+      paramCount++;
+    }
+
+    if (filters.type) {
+      conditions.push(`m.member_type = $${paramCount}`);
+      values.push(filters.type);
       paramCount++;
     }
 

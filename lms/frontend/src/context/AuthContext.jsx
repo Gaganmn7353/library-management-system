@@ -55,7 +55,25 @@ export function AuthProvider({ children }) {
         throw new Error('Invalid response from server');
       }
     } catch (error) {
-      const message = error.response?.data?.message || error.message || 'Login failed';
+      // Handle network errors
+      if (error.code === 'ERR_NETWORK' || error.message.includes('Network Error')) {
+        const errorMsg = 'Cannot connect to server. Please make sure the backend is running on http://localhost:5000';
+        console.error('Network Error:', errorMsg);
+        toast.error(errorMsg);
+        throw new Error(errorMsg);
+      }
+      
+      // Handle other errors
+      const message = error.response?.data?.message || 
+                     error.response?.data?.error || 
+                     error.message || 
+                     'Login failed. Please check your credentials.';
+      console.error('Login Error:', {
+        message,
+        status: error.response?.status,
+        data: error.response?.data,
+        error: error.message
+      });
       toast.error(message);
       throw error;
     }

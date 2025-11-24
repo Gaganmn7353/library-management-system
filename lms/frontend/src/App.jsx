@@ -13,6 +13,7 @@ import AddMember from './pages/AddMember';
 import Transactions from './pages/Transactions';
 import IssueReturn from './pages/IssueReturn';
 import Reports from './pages/Reports';
+import Users from './pages/Users';
 
 function App() {
   return (
@@ -99,6 +100,14 @@ function App() {
               element={
                 <ProtectedRoute requireLibrarian>
                   <Reports />
+                </ProtectedRoute>
+              }
+            />
+            <Route
+              path="/users"
+              element={
+                <ProtectedRoute requireAdmin>
+                  <Users />
                 </ProtectedRoute>
               }
             />
